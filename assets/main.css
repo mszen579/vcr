@@ -1,0 +1,123 @@
+
+			body {
+				text-align: center;
+				margin: auto;
+                background-color:lightgray;
+			}
+            li{
+                font-size:19px;
+                margin:5px;
+                display:block;
+                text-align:left;
+				color:darkgray;
+            }
+            #message{
+                margin:25px;
+            }
+			#box {
+				width: 900px;
+                background-color:#3E5C99;
+				margin: auto;
+				border-radius:8px;
+			}
+
+			.button-post {
+			background-color: lightgray;
+			border: none;
+			color: gray;
+			border-radius:4px;
+			padding: 8px 15px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			box-shadow: 1px 2px orange;
+			}
+
+			.button-out {
+			background-color: orange;
+			border: none;
+			color: white;
+			border-radius:4px;
+			padding: 8px 15px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			}
+
+			.button-login {
+			background-color: #75DB1B;
+			border: none;
+			color: white;
+			border-radius:4px;
+			padding: 8px 15px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			}
+
+			.input {
+			width: 50%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			}
+
+			.textarea{
+			width:50%;
+			border:darkgray 3px solid;
+			border-radius:8px;
+			margin:auto;
+			color: #3b5998;
+			}
+
+
+/*the below are for log and registration files*/
+
+.button {
+    background-color: #E06926;
+    border: none;
+    color: white;
+    border-radius:4px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button-backtohome {
+    background-color: #5E5E5E;
+    border: none;
+    color: white;
+    border-radius:4px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+		
