@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             <h3 style="font-family:arial; color:#E06926">SINGUP AREA</h3>
 
-            <form action="register" method="POST" >
+            <form action="register" method="POST">
                 <input class='input' type="text" name="name" placeholder="name">
                 <br>
                 <input class='input' type="email" name="email" placeholder="email">

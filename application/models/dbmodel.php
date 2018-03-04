@@ -4,7 +4,7 @@ class dbmodel extends CI_Model
     public function insert_user($par)// here we will enter each parameter into the db
     {
         $query = "INSERT INTO companies (name, email, password, address, type, contact, about, logo, admins_id) values (?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['about'], $par['logo'], 1]; //we need to the md5 is for hashing the password
+        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['about'], $par['logo'], 2]; //we need to the md5 is for hashing the password
 
         $this->db->query($query, $values);
 
@@ -49,6 +49,16 @@ class dbmodel extends CI_Model
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function insert_admin($par)// here we will enter each parameter into the db
+    {
+        $query = "INSERT INTO admins (name, email, password, level) values (?,?,?,?)";
+        $values = [$par['name'], $par['email'], $par['password'], $par['level']]; //we need to the md5 is for hashing the password
+
+        $this->db->query($query, $values);
+
+
+    }
 }
 
 

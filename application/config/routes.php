@@ -13,7 +13,7 @@ $route['gotologregpage'] = 'Engin/gotologreg';
 $route['logoutcp'] = 'Engin/logoutadmin';// to logout form the admin home
 $route['cpadmin'] = 'Engin/gotologregadmin';// for admins
 $route['adminlog'] = 'Engin/loginadmin';
-
+$route['registeradmin'] = 'Engin/registeradmin';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;

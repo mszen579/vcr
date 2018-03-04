@@ -134,6 +134,7 @@ public function loginadmin()//this function for login engin
         $this->session->set_userdata('admin_id', $result['id']);
         $this->session->set_userdata('admin_name', $result['name']);
         $this->session->set_userdata('admin_email', $result['email']);
+        $this->session->set_userdata('admin_level', $result['level']);
 
         $this->load->model('dbmodel');
       //  $posts = $this->dbmodel->takePost(); //this is for posting data to the home page
@@ -162,5 +163,46 @@ public function logoutadmin()
     $this->load->view('cpadmin'); 
 }
 
+
+
+//////////////////////////////////////////////This is for ADMIN REGISTER & Validation/////////////////////////////////
+    public function registeradmin()
+    {
+
+        //the below 5 lines are for validation of the registrations "it is one of MVC libraries loaded into the autoload.php"
+		$this->form_validation->set_rules('name', 'Name',  'trim|required|min_length[3]|alpha');// alpha is to force alphabet
+		$this->form_validation->set_rules('email', 'Email address',  'required|valid_email');// valid_email: only email type is allowed
+		$this->form_validation->set_rules('password', 'password',  'trim|required|min_length[6]');
+		$this->form_validation->set_rules('passwordConfirm', 'The confirmed Password', 'required|matches[password]'); //matches[password]: to force the matching of the passwords
+       
+
+        if ($this->form_validation->run() == FALSE) { #if these errors exist, then; 
+            $error['error'] = validation_errors(); 
+            $this->load->view('homeadmin', $error); //show them in the registration form
+
+        } else {
+            $adminreginfo = $this->input->post(null, true); //null: means send every inputs from the form to the db
+			//input will be sent as an array which contain all above elements
+
+            $this->load->model('dbmodel'); //load process from models called 'dbmodel.php'
+
+
+            $result = $this->dbmodel->checker($adminreginfo['email']);
+
+
+            //this is to show if you have entered the same email to the data base before.
+            if ($result) {
+                $error['error'] = "The email you have just entered is already exist, please enter a different email address";
+                $this->load->view('homeadmin', $error);
+            } else {
+                $this->dbmodel->insert_admin($adminreginfo); //call the (function) from model and run it with our inputs.
+                $noerror['noerror'] = "You are succesfully registered to our db. Now you can login.";
+                $this->load->view('homeadmin', $noerror); #send this errors to loginandregisterpage.
+            }
+
+
+
+        }
+    }
 
 }
