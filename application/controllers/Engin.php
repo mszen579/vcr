@@ -15,7 +15,10 @@ class Engin extends CI_Controller
 
     public function gohome()
     {
-        $this->load->view('home');
+        // Husam: Adding function to get all posts 
+        $this->load->model('dbmodel');
+        $listings = $this->dbmodel->getposts();
+        $this->load->view('home',array('listings'=>$listings));
         
 
     }
@@ -108,8 +111,8 @@ public function login()//this function for login engin
         $this->session->set_userdata('name', $result['name']);
         $this->session->set_userdata('email', $result['email']);
         $this->load->model('dbmodel');
-      //  $posts = $this->dbmodel->takePost(); //this is for posting data to the home page
-        $this->load->view('home'); 
+        $listings = $this->dbmodel->getpostsofone(); //this is for posting data to the company profile
+        $this->load->view('companypage', array('listings'=>$listings) ); 
     } else {
         $error['logerror'] = "Wrong password or email";
         $this->load->view('partners', $error); #send this error to homepage, i will print them with key(logerror)
@@ -204,5 +207,14 @@ public function logoutadmin()
 
         }
     }
+//////////////////////////////////////////////////////
+///Husam this to run editprofile -showing the current profile info
+public function edit()
+{
+    $this->load->model('dbmodel');
+    $listings = $this->dbmodel->currentinfo();
+    $this->load->view('editprofile', array('listings'=>$listings));
 
+}
+    
 }

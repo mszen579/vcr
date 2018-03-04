@@ -59,6 +59,34 @@ public function insert_admin($par)// here we will enter each parameter into the 
 
 
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Husam : query for the homepage to show the recent posts starting by the highlited on the top/////
+public function getposts()
+{
+    $query = "SELECT * FROM `posts` ORDER BY highlighted DESC";
+    $listings= $this->db->query($query)->result_array();
+    return $listings;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Husam : query to get all post of specific company and return the values to company page after specific company logs in 
+public function getpostsofone()
+{
+    $query = "SELECT * FROM `posts` where companies_id=?";
+    $listings=$this->db->query($query,$this->session->userdata('id'))->result_array();
+    return $listings;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////Husam: this query runs on edit profile page to show the current profile information of the company
+public function currentinfo()
+{
+    $query = "SELECT * FROM `companies` where id=?";
+    $listings=$this->db->query($query,$this->session->userdata('id'))->result_array();
+    return $listings;
+}
 }
 
 

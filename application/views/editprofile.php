@@ -13,7 +13,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</head>
 
 	<body>
-		<h1>Talent Portal</h1> 
+		<h1>Talent Portal- Edit Profile </h1> 
 		<img src="<?php echo base_url(); ?>assets/vc.png" alt="Venture Cafe Rotterdam"> <!--this is for adding image to the porject-->
 
 
@@ -23,26 +23,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<?php if (NULL !== $this->session->userdata('id')) {?>
 				<h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>	
 					<?php }?>
-			</div>
-	<?php
+                    <h2>current profile information:</h2>
+                    <?php
 	if (isset($listings)){
 		foreach ($listings as $key ) {
 			?>
 			<table style="color:#e06a26; background-color:#434343 ;width:50%; border-radius:4px; text-align:center; margin:auto; ">
 			<tr>
-			<td>image:[Assuming an image is posted]<?= $key['image']?></td>
-			<td>Post title:<?= $key['title']?></td>
-			<td>Post description:<?= $key['description']?></td>
+			<td><?= $key['name']?></td>
+			<td><?= $key['email']?></td>
+			<td><?= $key['address']?></td>
+            <td><?= $key['contact']?></td>
+            <td><?= $key['about']?></td>
 			</tr>
 			</table>
-<?php			
-		}
-	}	?>	
+            <a href="editnewinfo"><button class='button-out' type="submit">Edit</button></a>
+        <?php }} ?>
 					<?php if (NULL !== $this->session->userdata('id')) {?>
 					<a href="logout"><button class='button-out' type="submit">Logout</button></a>	
 					<?php }?>
 	<br><br>
-	<a href="gotologregpage"><button class='button-login'>Companies and Orgnizations</button></a>
 
 
 	</body>

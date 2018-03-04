@@ -7,7 +7,8 @@ $route['login'] = 'Engin/login';
 $route['register'] = 'Engin/register';
 $route['logout'] = 'Engin/logout';
 $route['gotologregpage'] = 'Engin/gotologreg';
-
+$route['addpost']='Engin/addpost';
+$route['editprofile']='Engin/edit';
 
 
 $route['logoutcp'] = 'Engin/logoutadmin';// to logout form the admin home

@@ -13,7 +13,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</head>
 
 	<body>
-		<h1>Talent Portal</h1> 
+		<h1>Talent Portal- this company page </h1> 
 		<img src="<?php echo base_url(); ?>assets/vc.png" alt="Venture Cafe Rotterdam"> <!--this is for adding image to the porject-->
 
 
@@ -28,6 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	if (isset($listings)){
 		foreach ($listings as $key ) {
 			?>
+            <h2>You recent activites : </h2>
 			<table style="color:#e06a26; background-color:#434343 ;width:50%; border-radius:4px; text-align:center; margin:auto; ">
 			<tr>
 			<td>image:[Assuming an image is posted]<?= $key['image']?></td>
@@ -37,12 +38,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</table>
 <?php			
 		}
-	}	?>	
+	}	?>
+    <ul>
+    <li>Settings:</li>
+    <li><a href="addpost">add a post</li>
+    <li><a href="editprofile">Edit profile</li>
+    </ul>
 					<?php if (NULL !== $this->session->userdata('id')) {?>
 					<a href="logout"><button class='button-out' type="submit">Logout</button></a>	
 					<?php }?>
 	<br><br>
-	<a href="gotologregpage"><button class='button-login'>Companies and Orgnizations</button></a>
 
 
 	</body>
