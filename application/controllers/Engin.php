@@ -22,7 +22,7 @@ class Engin extends CI_Controller
 
 
 
-     public function gotologreg()
+     public function gotologreg() //this is for login for companies
     {
         if(isset($_SESSION['id'])){ //this is to prevent the user from logged in (if he is already logged in)
             $errorlogin['errorlogin'] = "Sorry, but You are already logged in";
@@ -30,6 +30,21 @@ class Engin extends CI_Controller
         }
         else{
         $this->load->view('partners');
+        }
+        
+    }
+
+
+
+
+     public function gotologregadmin() //this is for login for admins
+    {
+        if(isset($_SESSION['id'])){ //this is to prevent the user from logged in (if he is already logged in)
+            $errorlogin['errorlogin'] = "Sorry, but You are already logged in";
+            $this->load->view('cpadmin', $errorlogin);
+        }
+        else{
+        $this->load->view('cpadmin');
         }
         
     }
@@ -90,8 +105,8 @@ public function login()//this function for login engin
     $result = $this->dbmodel->loginMethod($email_login, $password_login);
     if ($result) { #if this query true/runs/gives answer, then we logged in, take information as an array
         $this->session->set_userdata('id', $result['id']);
-        $this->session->set_userdata('firstname', $result['firstname']);
-        $this->session->set_userdata('lastname', $result['lastname']);
+        $this->session->set_userdata('name', $result['name']);
+        $this->session->set_userdata('email', $result['email']);
         $this->load->model('dbmodel');
       //  $posts = $this->dbmodel->takePost(); //this is for posting data to the home page
         $this->load->view('home'); 
@@ -102,13 +117,50 @@ public function login()//this function for login engin
 }
 
 
+//////////////////////////////////////////////This is for LOGIN for ADMINS////////////////////////////////////////////
 
-////////////////this for login out of the systme and return to login page//////////////////////////////////
+public function loginadmin()//this function for login engin
+{
+    $loginfoadmin = $this->input->post(null, true);//take whole information from form
+
+    $email_login = $loginfoadmin['email-login'];
+    $password_login = $loginfoadmin['password-login'];
+    //assign variable to check this if its matching with database or not
+   
+    $this->load->model('dbmodel');
+    
+    $result = $this->dbmodel->loginMethodadmin($email_login, $password_login);
+    if ($result) { #if this query true/runs/gives answer, then we logged in, take information as an array
+        $this->session->set_userdata('admin_id', $result['id']);
+        $this->session->set_userdata('admin_name', $result['name']);
+        $this->session->set_userdata('admin_email', $result['email']);
+
+        $this->load->model('dbmodel');
+      //  $posts = $this->dbmodel->takePost(); //this is for posting data to the home page
+        $this->load->view('homeadmin'); 
+    } else {
+        $error['logerror'] = "Wrong password or email";
+        $this->load->view('cpadmin', $error); #send this error to homepage, i will print them with key(logerror)
+    }
+}
+
+
+
+
+////////////////this for login out of the company and return to login page//////////////////////////////////
     public function logout()
     {
         $this->session->sess_destroy();
         $this->load->view('home'); 
     }
+
+
+////////////////this for login out of the company and return to login page//////////////////////////////////
+public function logoutadmin()
+{
+    $this->session->sess_destroy();
+    $this->load->view('cpadmin'); 
+}
 
 
 }

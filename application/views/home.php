@@ -18,10 +18,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 	 <div style="color:white; background-color:red; width:15%; border-radius:4px; text-align:center; margin:auto; "> <?= isset($errorlogin) ? $errorlogin : '' ?> </div> <!--this to echo the validation errors -->
-	<?php $userinfo = $this->session->all_userdata(); ?>
+	<?php $companyinfo = $this->session->all_userdata(); ?>
 			<div>
 		<h1 style="color:darkorange;">Welcome:
-		<?= $userinfo['firstname'] .' ' .$userinfo['lastname'] .'    Your user ID is: ' .$userinfo['id'] ?> &nbsp; &nbsp;				
+		<?= $companyinfo['name']  .'    Your company ID is: ' .$companyinfo['id'] ?> &nbsp; &nbsp;				
 
 			</div>
 					<?php if (NULL !== $this->session->userdata('id')) {?>

@@ -10,10 +10,23 @@ class dbmodel extends CI_Model
 
 
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////login for companies//////////////////////////////////////////////////////
     public function loginMethod($email, $password) // here we will enter each parameter into the db
     {
         $myquery = "SELECT * FROM companies WHERE email=? AND password = ? ";
+        $values = array("$email", "$password");
+        $query = $this->db->query($myquery, $values)->row_array();
+        if ($query) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+//////////////////////////////////////////////////login for admins///////////////////////////////////////////////////
+    public function loginMethodadmin($email, $password) // here we will enter each parameter into the db
+    {
+        $myquery = "SELECT * FROM admins WHERE email=? AND password = ? ";
         $values = array("$email", "$password");
         $query = $this->db->query($myquery, $values)->row_array();
         if ($query) {
@@ -37,3 +50,6 @@ class dbmodel extends CI_Model
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
+
+
+
