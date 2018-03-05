@@ -15,11 +15,23 @@ $route['insertingpost']='Engin/insertingpost';
 $route['showallvacanccies']='Engin/showallvacanccies';
 $route['gobacktoyourprofile']='Engin/gobacktoyourprofile';
 
+<<<<<<< HEAD
 $route['viewcompanies']='Engin/viewcompanies';
 $route['viewposts']='Engin/viewposts'; //view all posts in the CP of the admin
 $route['editpost/(:any)']='Engin/editpost/$1';
 $route['approvepost/(:any)']='Engin/approvepost/$1';
 $route['rejectpost/(:any)']='Engin/rejectpost/$1';
+=======
+
+
+$route['showallvacanccies']='Engin/showallvacanccies';
+$route['gobacktoyourprofile']='Engin/gobacktoyourprofile';
+
+
+
+
+
+>>>>>>> ace4adcf92948da1ee4abb4cc8b9e9c7ead0e083
 $route['logoutcp'] = 'Engin/logoutadmin';// to logout form the admin home
 $route['cpadmin'] = 'Engin/gotologregadmin';// for admins
 $route['adminlog'] = 'Engin/loginadmin';
