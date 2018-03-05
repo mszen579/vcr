@@ -87,6 +87,27 @@ public function currentinfo()
     $listings=$this->db->query($query,$this->session->userdata('id'))->result_array();
     return $listings;
 }
+//////////////////////////////////////////////////////////////////////////////////
+//Husam : this query is to edit profile of the a company 
+public function editprofile($par)
+{
+    $id = $this->session->userdata('id');
+    $query="UPDATE companies SET email=? , address=? , contact=? ,about= ? WHERE id=?";
+    $values=[$par['email'], $par['address'], $par['contact'], $par['about'] , $id ];
+    $this->db->query($query, $values);
+
+}
+////////////////////////////////////////////////////////////////////////////////
+///Husam: Adding post for one company 
+public function insertpost($addingpost)
+{
+    $id = $this->session->userdata('id');
+    $admin= 1;
+    $query= "INSERT INTO posts (title,image,description,language,startdate
+    ,enddate,status,link,vacanciesnum,filledposition,companies_id,admins_id) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+    $values = [$addingpost['title'],$addingpost['image'],$addingpost['description'],$addingpost['language'],$addingpost['startdate'],$addingpost['enddate'],'Pending',$addingpost['link'],$addingpost['vacanciesnum'],$addingpost['filledposition'],$id,1];
+    $this->db->query($query,$values);
+}
 }
 
 

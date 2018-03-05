@@ -37,7 +37,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <td><?= $key['about']?></td>
 			</tr>
 			</table>
-            <a href="editnewinfo"><button class='button-out' type="submit">Edit</button></a>
+
+			<form action='editnewinfo' method='post'>
+			<h2>Edit your information</h2>
+			<input class='input' type="text" name="email" value=<?= $key['email']?>>
+			<input class='input' type="text" name="address" value=<?= $key['address']?>>
+			<input class='input' type="text" name="contact" value=<?= $key['contact']?>>
+			<input class='input' type="text" name="about" value=<?= $key['about']?>>
+			<br>
+            <button class='button-out' type="submit">Edit</button>
+			</form>
         <?php }} ?>
 					<?php if (NULL !== $this->session->userdata('id')) {?>
 					<a href="logout"><button class='button-out' type="submit">Logout</button></a>	

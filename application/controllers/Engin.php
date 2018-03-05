@@ -216,5 +216,29 @@ public function edit()
     $this->load->view('editprofile', array('listings'=>$listings));
 
 }
-    
+/////////////////////Husam : continue to edit 
+/////////////////////////
+public function editnewinfo()
+{
+    $newinfo = $this->input->post(null, true);
+    $this->load->model('dbmodel');
+    $this->dbmodel->editprofile($newinfo);
+    $listings = $this->dbmodel->currentinfo();
+    $this->load->view('editprofile',array('listings'=>$listings));
+}
+
+/////////////////////Husam : Add post feature to the company 
+public function addpost()
+{
+    $this->load->view('addpost');
+}
+
+//// Husam : functions to add posts 
+public function insertingpost()
+{
+    //form validation here --- 
+    $addingpost = $this->input->post(null, true);
+    $this->load->model('dbmodel');
+    $this->dbmodel->insertpost($addingpost);
+}
 }
