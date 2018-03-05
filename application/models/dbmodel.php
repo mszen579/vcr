@@ -3,8 +3,8 @@ class dbmodel extends CI_Model
 {
     public function insert_user($par)// here we will enter each parameter into the db
     {
-        $query = "INSERT INTO companies (name, email, password, address, type, contact, about, logo, admins_id) values (?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['about'], $par['logo'], 2]; //we need to the md5 is for hashing the password
+        $query = "INSERT INTO companies (name, email, password, address, type, contact, about, logo, trusted, admins_id) values (?,?,?,?,?,?,?,?,?,?)";
+        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['about'], $par['logo'], $par['trusted'], 2]; //we need to the md5 is for hashing the password
 
         $this->db->query($query, $values);
 

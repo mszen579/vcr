@@ -15,7 +15,7 @@ class Engin extends CI_Controller
 
     public function gohome()
     {
-        // Husam: Adding function to get all posts 
+        
         $this->load->model('dbmodel');
         $listings = $this->dbmodel->getposts();
         $this->load->view('home',array('listings'=>$listings));
@@ -23,6 +23,18 @@ class Engin extends CI_Controller
 
     }
 
+    public function gobacktoyourprofile(){
+              
+                $this->load->view('companypage');
+        }
+
+
+    public function showallvacanccies()//to show all vacanccies in the company profile
+	{
+		$this->load->model('dbmodel');
+		$listings = $this->dbmodel->getpostsofone();
+		$this->load->view('companypage',array('listings'=>$listings));
+	}
 
 
      public function gotologreg() //this is for login for companies
@@ -236,9 +248,48 @@ public function addpost()
 //// Husam : functions to add posts 
 public function insertingpost()
 {
-    //form validation here --- 
-    $addingpost = $this->input->post(null, true);
-    $this->load->model('dbmodel');
-    $this->dbmodel->insertpost($addingpost);
+  //////////////////////////////////////////////
+		$this->form_validation->set_rules('title', 'Title',  'trim|required|min_length[3]|alpha');
+		$this->form_validation->set_rules('description', 'The description',  'required');
+        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
+        $this->form_validation->set_rules('startdate', 'Start date',  'required');
+        $this->form_validation->set_rules('enddate', 'End date',  'required');
+        $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
+        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
+        $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required');
+        $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required');//we need to add condition to be less than vacanciesnum
+        $this->form_validation->set_rules('language', 'Language',  'trim|required');
+		
+       
+
+        if ($this->form_validation->run() == FALSE) { #if these errors exist, then; 
+            $error['error'] = validation_errors(); 
+            $this->load->view('addpost', $error); //show them in the registration form
+
+        } else {
+            $this->load->model('dbmodel');
+            $addingpost = $this->input->post(null, true);
+
+
+            $result = $this->dbmodel->checker($addingpost['title']);
+
+
+            //this is to show if you have entered the same email to the data base before.
+            if ($result) {
+                $error['error'] = "The post you have just entered is already exist, please enter a different post";
+                $this->load->view('addpost', $error);
+            } else {
+                $this->dbmodel->insertpost($addingpost); //call the (function) from model and run it with our inputs.
+                $noerror['noerror'] = "You are succesfully add your vaccancie. Now you can go to your home page to see your listing status";
+                $this->load->view('addpost', $noerror); #send this errors to loginandregisterpage.
+            }
+
+
+
+        }
+    
+    
+    
 }
 }
+

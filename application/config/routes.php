@@ -13,6 +13,15 @@ $route['editnewinfo']='Engin/editnewinfo';
 $route['insertingpost']='Engin/insertingpost';
 
 
+
+
+$route['showallvacanccies']='Engin/showallvacanccies';
+$route['gobacktoyourprofile']='Engin/gobacktoyourprofile';
+
+
+
+
+
 $route['logoutcp'] = 'Engin/logoutadmin';// to logout form the admin home
 $route['cpadmin'] = 'Engin/gotologregadmin';// for admins
 $route['adminlog'] = 'Engin/loginadmin';

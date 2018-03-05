@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Craigslist - Register Page</title>
+    <title>Vintur Cafe - Register Page</title>
 <link rel="stylesheet" type = "text/css" href = "<?php echo base_url() ?>assets/main.css"/> <!--this is for adding css file to the porject-->
 </head>
 <body>
@@ -36,11 +36,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <input class='input' type="text" name="address" placeholder="company address">
                 <br>
                     <select class='input' name="type">
-                    <option value="Startup">Startup</option>
-                    <option value="Service provider">Service provider</option>
-                    <option value="Government">Government</option>
-                    <option value="Academia">Academia</option>
-                    <option value="Corporate">Corporate</option>
+                    <option value="startup">Startup</option>
+                    <option value="serviceprovider">Service provider</option>
+                    <option value="government">Government</option>
+                    <option value="academia">Academia</option>
+                    <option value="corporate">Corporate</option>
                     </select>
                 <br>
                 <input class='input' type="text" name="contact" placeholder="contact">
@@ -48,6 +48,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <input class='input' type="text" name="about" placeholder="about the company">
                 <br>
                 <input class="button-backtohome" type="file" name="logo" accept="image/*">
+                <br>
+                    <select class='input' name="trusted">
+                        <option value="trusted">Trusted educational partner</option>
+                        <option value="company">Company</option>
+                    </select>
+                <br>
                 <input class='button' type="submit" name="register" value="Register">
             </form>
         </div>

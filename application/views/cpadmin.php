@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
    <input class='input' type="password" name="password-login" placeholder="Password">
    <br>
    <br>
-   <input class='button' type="submit" name="login" value="login">
+   <input class='button-login' type="submit" name="login" value="login">
 </form>
 <br>
 <br>
