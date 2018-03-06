@@ -85,18 +85,18 @@ public function register()
         $this->load->view('partners', $error); //show them in the registration form
     
     } else {
-        
-                $companyinfo=$this->input->post(null,false);
+                $this->load->model('dbmodel'); 
+                $companyinfo=$this->input->post(null, true);
 
                 $image = $_FILES['image']['name'];
                 //  echo $image;
 
 
-                $this->dbmodel->insert($companyinfo,$image);
+                // $this->dbmodel->insert($companyinfo,$image);// this one should be removed
 
                 $config['upload_path']= 'uploads/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size'] = 512;  // to add more for the capacity see example: $config['max_size'] = 1024 * 10;
+                $config['max_size'] = 512;  // to add more for the capacity see example: $config['max_size'] = 1024 * 12;
                 
 
                 $this->load->library('upload',$config);
@@ -107,13 +107,10 @@ public function register()
                 
                 }
                 else{
-                echo "Image is did not uploaded";
+                echo "Image did not uploaded";
                 }
 
-
-       //load process from models called 'dbmodel.php'
-
-       $this->load->model('dbmodel'); 
+      
        $result = $this->dbmodel->checker($companyinfo['email']);
       //this is to show if you have entered the same email to the data base before.
       if ($result) {
@@ -269,11 +266,11 @@ public function addpost()
 public function insertingpost()
 {
  //////////////////////////////////////////////
-        $this->form_validation->set_rules('title', 'Title',  'trim|required|min_length[3]|alpha');
-        $this->form_validation->set_rules('description', 'The description',  'required');
+        $this->form_validation->set_rules('title', 'Title',  'trim|required|min_length[3]');
+        $this->form_validation->set_rules('description', 'The description',  'trim|required');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
-       $this->form_validation->set_rules('startdate', 'Start date',  'required');
-       $this->form_validation->set_rules('enddate', 'End date',  'required');
+       $this->form_validation->set_rules('startdate', 'Start date',  'trim|required');
+       $this->form_validation->set_rules('enddate', 'End date',  'trim|required');
        $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
        $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required');
@@ -294,11 +291,10 @@ public function insertingpost()
            //  echo $image;
 
 
-           $this->dbmodel->insertpost($addingpost,$image);
-
+           //$this->dbmodel->insertpost($addingpost,$image); //this has to be removed
            $config['upload_path']= 'uploads/';
            $config['allowed_types'] = 'gif|jpg|png|jpeg';
-           $config['max_size'] = 512;  // to add more for the capacity see example: $config['max_size'] = 1024 * 10;
+           $config['max_size'] = 1024 * 12;  // to add more for the capacity see example: $config['max_size'] = 1024 * 10;
            
 
            $this->load->library('upload',$config);
@@ -312,12 +308,12 @@ public function insertingpost()
            echo "Image is did not uploaded";
            }
 
-           $result = $this->dbmodel->checker($addingpost['title']);
+           $result = $this->dbmodel->postchecker($addingpost['title']);// this one has been changed to postchecker and a function in the model is added 
 
 
            //this is to show if you have entered the same email to the data base before.
            if ($result) {
-               $error['error'] = "The post you have just entered is already exist, please enter a different post";
+               $error['error'] = "The add title you have just entered is already exist, please enter a different add";
                $this->load->view('addpost', $error);
            } else {
                $this->dbmodel->insertpost($addingpost,$image); //call the (function) from model and run it with our inputs.
@@ -328,8 +324,7 @@ public function insertingpost()
 
 
        }
-   
-   
+
    
 }
 //////////////////////////////////////////////////

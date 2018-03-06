@@ -35,10 +35,10 @@ class dbmodel extends CI_Model
         }
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function checker($email) // here we will check if the email has been registered before or not.
+    public function checker($var) // here we will check if the email has been registered before or not.
     {
         $myquery = "SELECT * FROM companies WHERE email=? ";
-        $values = array("$email");
+        $values = array($var);
         $query = $this->db->query($myquery, $values)->row_array();
         if ($query) {
             return $query;
@@ -176,7 +176,20 @@ public function getOnepost($id)
         $this->db->query($myquery, $values);
     }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function postchecker($title) // here we will check if the POST has been add before or not.
+    {
+        $myquery = "SELECT * FROM posts WHERE title=? ";
+        $values = array($title);
+        $query = $this->db->query($myquery, $values)->row_array();
+        if ($query) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 

@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <div type="boxform">
 
-  <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
+    <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
   <div style="color:white; background-color:#3CB371; width:50%; border-radius:8px;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
 
             <h3 style="font-family:arial; color:#E06926">SINGUP AREA</h3>
