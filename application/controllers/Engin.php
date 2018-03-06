@@ -23,6 +23,20 @@ class Engin extends CI_Controller
 
     }
 
+    public function gobacktoyourprofile()
+    {
+        $this->load->model('dbmodel');
+        $listings = $this->dbmodel->getpostsofone();
+        $this->load->view('companypage',array('listings'=>$listings));
+}
+
+public function showallvacanccies()//to show all vacanccies in the company profile
+    {
+        $this->load->model('dbmodel');
+        $listings = $this->dbmodel->getpostsofone();
+        $this->load->view('companypage',array('listings'=>$listings));
+    }
+
 
 
      public function gotologreg() //this is for login for companies
@@ -140,8 +154,8 @@ public function loginadmin()//this function for login engin
         $this->session->set_userdata('admin_level', $result['level']);
 
         $this->load->model('dbmodel');
-      //  $posts = $this->dbmodel->takePost(); //this is for posting data to the home page
-        $this->load->view('homeadmin'); 
+        $listings=$this->dbmodel->getpendingposts();
+        $this->load->view('homeadmin',array('listings'=>$listings)); 
     } else {
         $error['logerror'] = "Wrong password or email";
         $this->load->view('cpadmin', $error); #send this error to homepage, i will print them with key(logerror)
@@ -231,13 +245,124 @@ public function addpost()
 {
     $this->load->view('addpost');
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//// Husam : functions to add posts 
 public function insertingpost()
 {
-    //form validation here --- 
-    $addingpost = $this->input->post(null, true);
-    $this->load->model('dbmodel');
-    $this->dbmodel->insertpost($addingpost);
+ //////////////////////////////////////////////
+        $this->form_validation->set_rules('title', 'Title',  'trim|required|min_length[3]|alpha');
+        $this->form_validation->set_rules('description', 'The description',  'required');
+       $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
+       $this->form_validation->set_rules('startdate', 'Start date',  'required');
+       $this->form_validation->set_rules('enddate', 'End date',  'required');
+       $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
+       $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
+       $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required');
+       $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required');//we need to add condition to be less than vacanciesnum
+       $this->form_validation->set_rules('language', 'Language',  'trim|required');
+        
+     
+
+       if ($this->form_validation->run() == FALSE) { #if these errors exist, then;
+           $error['error'] = validation_errors();
+           $this->load->view('addpost', $error); //show them in the registration form
+
+       } else {
+           $this->load->model('dbmodel');
+           $addingpost = $this->input->post(null, true);
+
+
+           $result = $this->dbmodel->checker($addingpost['title']);
+
+
+           //this is to show if you have entered the same email to the data base before.
+           if ($result) {
+               $error['error'] = "The post you have just entered is already exist, please enter a different post";
+               $this->load->view('addpost', $error);
+           } else {
+               $this->dbmodel->insertpost($addingpost); //call the (function) from model and run it with our inputs.
+               $noerror['noerror'] = "You are succesfully add your vaccancie. Now you can go to your home page to see your listing status";
+               $this->load->view('addpost', $noerror); #send this errors to loginandregisterpage.
+           }
+
+
+
+       }
+   
+   
+   
 }
+//////////////////////////////////////////////////
+///Husam view all companies in the cp admin
+public function viewcompanies()
+{
+    $this->load->model('dbmodel');
+    $listings = $this->dbmodel->getcompanies();
+    $this->load->view('cpviewcompanies',array('listings'=>$listings));
+}
+////////////////////////////////////////////////////////////////////////////
+//Husam: view all posts on CP of the admin
+public function viewposts()
+{
+    $this->load->model('dbmodel');
+    $listings= $this->dbmodel->getallposts();
+    $this->load->view('cpviewallposts',array('listings'=>$listings));
+}
+///////////////////////////////////////////////////////////////////////////
+// Husam: approving pending posts by admin
+public function approvepost($id)
+{
+    $this->load->model('dbmodel');
+    $this->dbmodel->aproveapost($id);
+     $msg = "The post is approved";
+     $this->load->view('homeadmin',array('message' => $msg));
+  
+}
+////////////////////////////////////////////////////////////////////
+// reject pending posts by admin in the CP 
+public function rejectpost($id)
+{
+    $this->load->model('dbmodel');
+    $this->dbmodel->delpost($id);
+    $msg="The post is removed ";
+    $this->load->view('homeadmin',array('message' => $msg));
+}
+
+////////////////////////////////////////////////////////////////
+/////Deleting company by id from cp admin 
+public function deletecompany($id)
+{
+    $this->load->model('dbmodel');
+    $this->dbmodel->delcomp($id);
+    $msg="The Company selected was removed!";
+    redirect('cpshowcompanies');
+}
+
+public function cpshowcompanies()
+{
+    $this->load->model('dbmodel');
+    $listings = $this->dbmodel->getcompanies();
+    $this->load->view('cpviewcompanies',array('listings'=>$listings));
+}
+
+///////////////////////////////////////////////////////
+////Husam : Editing pending posts on cp admin
+public function editpost()
+{
+	redirect('gotocpeditpostspage');
+}
+////////////////////////////////////////////////////////////////
+///////Editing posts on pending at the control panel
+public function editing($id)
+	{
+		$editform = $this->input->post(null, true);
+		$result = $this->dbmodel->edit($editform);
+		$this->load->view('homeadmin');
+    }
+    
+   public function gotocpeditpostspage($id)
+   {
+    $result = $this->dbmodel->getOnepost($id);
+    $this->load->view('cpeditpostspage',['post' => $result]);
+   } 
 }

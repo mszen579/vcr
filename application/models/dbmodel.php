@@ -108,6 +108,76 @@ public function insertpost($addingpost)
     $values = [$addingpost['title'],$addingpost['image'],$addingpost['description'],$addingpost['language'],$addingpost['startdate'],$addingpost['enddate'],'Pending',$addingpost['link'],$addingpost['vacanciesnum'],$addingpost['filledposition'],$id,1];
     $this->db->query($query,$values);
 }
+
+
+///////////////////////////////////////////////////////////////////////////
+// Husam : query to get  Pending posts and show them on the admin page
+public function getpendingposts()
+{
+    $query= "SELECT * from posts where status=?";
+    $values='pending';
+   $listings= $this->db->query($query,$values)->result_array();
+   return $listings;
+}
+
+
+//////////////////////////////////////////////////////////////////////
+// Husam get all companies and partners for cp 
+public function getcompanies()
+{
+    return $this->db->query("SELECT * FROM companies")->result_array();
+}
+///////////////////////////////////////////////////////////////
+/////Husam get all posts for cp admin 
+public function getallposts()
+{
+    return $this->db->query("SELECT * FROM posts")->result_array();
+}
+//////////////////////////////////////////////////////////////////////
+// Husam: Query to approve  pending posts
+public function aproveapost($id)
+{
+    $query="UPDATE posts SET status='Approved' where id=?";
+    $this->db->query($query, $id);
+}
+///////////////////////////////////////////////////////////////////
+//REJECTING PENDING POST
+public function delpost($id)
+{
+    $query="DELETE FROM posts where id=?";
+    $this->db->query($query, $id);
+}
+//////////////////////////////////////////////////////////////////
+// Deleting a company 
+public function delcomp($id)
+{
+    $query="SELECT * FROM posts WHERE companies_id =? ";
+    $res=$this->db->query($query, $id);
+    
+    if($res !== NULL){
+    $query1="DELETE FROM posts WHERE companies_id =?";
+    $this->db->query($query1, $id);}
+
+    $query2="DELETE FROM companies where id=?";
+    $this->db->query($query2, $id);
+}
+
+public function getOnepost($id)
+    {
+        $myquery = "SELECT * FROM posts WHERE id=? ";
+        $values = array("$id");
+        return $this->db->query($myquery, $values)->row_array();
+    }
+
+
+ public function edit($arg)
+    {
+        $myquery = "UPDATE posts SET title= ?, description=?, language=?  WHERE id= ?";
+        $values = array($arg['title'], $arg['description'], $arg['language'], $arg['id']);
+        $this->db->query($myquery, $values);
+    }
+
+
 }
 
 
