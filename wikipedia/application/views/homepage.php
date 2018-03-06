@@ -19,12 +19,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
 	
 		
 	<h1>Wikipedia</h1>
-	<?php
+	<?php if(isset($_SESSION['id'])){
 	 foreach ($details as $key){
-         echo $key['title']."<br>";}?>
+         echo $key['title']."<br>";}}?>
         
 	  
-	<li><a href="/"><button>Back</button></a></li>
+	
 	<ul>
 		<li><a href="join">Login|Registeration</a></li><br><br>
 		<li><a href="postarticale">Write Articale</a></li>
