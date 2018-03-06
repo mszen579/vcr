@@ -1,16 +1,14 @@
 <?php 
 class dbmodel extends CI_Model
 {
-       public function insert($par, $image)// here we will enter each parameter into the db
+    public function insert($par, $image)// here we will enter each parameter into the db
     {
         $query = "INSERT INTO companies (name, email, password, address, type, contact, trusted, about, image,  admins_id) values (?,?,?,?,?,?,?,?,?,?)";
         $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
-
+ 
         $this->db->query($query, $values);
-
-}
-
-    
+ 
+ }
 ///////////////////////////////////////////////login for companies//////////////////////////////////////////////////////
     public function loginMethod($email, $password) // here we will enter each parameter into the db
     {
@@ -100,13 +98,13 @@ public function editprofile($par)
 }
 ////////////////////////////////////////////////////////////////////////////////
 ///Husam: Adding post for one company 
-public function insertpost($addingpost)
+public function insertpost($addingpost,$image)
 {
     $id = $this->session->userdata('id');
     $admin= 1;
     $query= "INSERT INTO posts (title,image,description,language,startdate
     ,enddate,status,link,vacanciesnum,filledposition,companies_id,admins_id) values(?,?,?,?,?,?,?,?,?,?,?,?)";
-    $values = [$addingpost['title'],$addingpost['image'],$addingpost['description'],$addingpost['language'],$addingpost['startdate'],$addingpost['enddate'],'Pending',$addingpost['link'],$addingpost['vacanciesnum'],$addingpost['filledposition'],$id,1];
+    $values = [$addingpost['title'],$image,$addingpost['description'],$addingpost['language'],$addingpost['startdate'],$addingpost['enddate'],'Pending',$addingpost['link'],$addingpost['vacanciesnum'],$addingpost['filledposition'],$id,1];
     $this->db->query($query,$values);
 }
 
@@ -142,6 +140,42 @@ public function aproveapost($id)
     $this->db->query($query, $id);
 }
 ///////////////////////////////////////////////////////////////////
+//REJECTING PENDING POST
+public function delpost($id)
+{
+    $query="DELETE FROM posts where id=?";
+    $this->db->query($query, $id);
+}
+//////////////////////////////////////////////////////////////////
+// Deleting a company 
+public function delcomp($id)
+{
+    $query="SELECT * FROM posts WHERE companies_id =? ";
+    $res=$this->db->query($query, $id);
+    
+    if($res !== NULL){
+    $query1="DELETE FROM posts WHERE companies_id =?";
+    $this->db->query($query1, $id);}
+
+    $query2="DELETE FROM companies where id=?";
+    $this->db->query($query2, $id);
+}
+
+public function getOnepost($id)
+    {
+        $myquery = "SELECT * FROM posts WHERE id=? ";
+        $values = array("$id");
+        return $this->db->query($myquery, $values)->row_array();
+    }
+
+
+ public function edit($arg)
+    {
+        $myquery = "UPDATE posts SET title= ?, description=?, language=?  WHERE id= ?";
+        $values = array($arg['title'], $arg['description'], $arg['language'], $arg['id']);
+        $this->db->query($myquery, $values);
+    }
+
 
 }
 

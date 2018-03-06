@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 <body>
     <div class="main-containter">
-        <h2 style="text-align:center; font-family:arial; color:#5E5E5E">WELCOME TO Craigslist, IF YOU HAVE ACCOUNT PLEASE LOGIN, OR REGISTER TO START SELLING AND BUYING</h2>
+        <h2 style="text-align:center; font-family:arial; color:#5E5E5E">If You Have Account Please Login, Or Register To Start Posting</h2>
         <div class="top-container">
 
  
@@ -19,10 +19,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <div type="boxform">
 
-  <div style="color:white; background-color:#FFA500; width:50%; border-radius:4px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
-  <div style="color:white; background-color:#3CB371; width:50%; border-radius:4px;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
-
-
+  <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
+  <div style="color:white; background-color:#3CB371; width:50%; border-radius:8px;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
 
             <h3 style="font-family:arial; color:#E06926">SINGUP AREA</h3>
 
@@ -45,15 +43,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <option value="Corporate">Corporate</option>
                     </select>
                 <br>
-                <select class='input' name="trusted">
-                        <option value="trusted">Trusted Educational Partner</option>
-                        <option value="company">Company</option>
-                </select>
-                <br>
                 <input class='input' type="text" name="contact" placeholder="contact">
                 <br>
                 <input class='input' type="text" name="about" placeholder="about the company">
+                <select class='input' name="trusted">
+                       <option value="company">Company</option>
+                       <option value="trusted">Trusted Educational Partner</option>
+               </select>
                 <br>
+                <label>Image should not excceed 512KB and name shouldnot contain charecters or spaces</label> <br>
                 <input class="button-backtohome" type="file" name="image">
                 <input class='button' type="submit" name="register" value="Register">
             </form>

@@ -14,6 +14,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
  <h3 style="font-family:arial; color:#E06926">VCR CP/View All companies and Partners</h3>
  <?php
+ if (isset($message)) {
+    echo $message;
+}
 if (isset($listings)){
 foreach ($listings as $key)  { 
     ?> 
@@ -24,7 +27,7 @@ foreach ($listings as $key)  {
     <td>Company email:<?= $key['email']?></td>
     <td>Company Address:<?= $key['address']?></td>
 	<td>Company Type:<?= $key['type']?></td>
-    <td><button class='button-out' type="delete">Delete</button></td>
+    <td><a href="deletecompany/<?= $key['id']?>"<button class='button-out' type="delete">Delete</a></button></td>
 	</tr>
     </table>
 

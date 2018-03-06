@@ -19,13 +19,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
      <div style="color:white; background-color:red; width:15%; border-radius:4px; text-align:center; margin:auto; "> <?= isset($errorlogin) ? $errorlogin : '' ?> </div> <!--this to echo the validation errors -->
 
-            <div> 
-            <?php if (NULL !== $this->session->userdata('id')) {?>
-                <h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>   
-               
-                 <?php echo '<img src=uploads/' .$this->session->userdata('image') .'>'; ?>  <!--adding logo to the company home page-->
-                    <?php }?>
-            </div>
+           <div>
+           <?php if (NULL !== $this->session->userdata('id')) {?>
+               <h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>  
+             
+                <?php echo '<img alt="CompanyLogo" height="100" width="100" src=uploads/' .$this->session->userdata('image') .'>'; ?>  <!--adding logo to the company home page-->
+                   <?php }?>
+           </div>
+           
             <h2>Your recent activites</h2>
     <?php
     if (isset($listings)){
@@ -35,8 +36,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
            
             <table style="color:white; background-color:#5E5E5E ;width:50%; border-radius:4px; text-align:center; margin:auto; ">
             <tr>
-            <td><h4 style="color:white">image: </h4><h4 style="color:orange"><?= $key['image']?></h4></td>
-            
+            <td><h4 style="color:white">image: </h4><h4 style="color:orange"><?='<img alt="Postphoto" height="100" width="100" src=uploads/' . $key['image'] .'>';?></h4></td>
             <td><h4 style="color:white">Post title:</h4><h4 style="color:orange"><?= $key['title']?></h4></td>
             
             <td><h4 style="color:white">Post description:</h4><h4 style="color:orange"><?= $key['description']?></h4></td>

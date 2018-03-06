@@ -81,7 +81,7 @@ if (NULL
                     <?php }?>
 
 
-<form action='insertingpost' method='post'>
+<form action='insertingpost' method='post' enctype='multipart/form-data'>
 
 <label>Post Title</label><br><br>
 
@@ -151,7 +151,7 @@ if (NULL
  min="1" placeholder="Filled Positions"><br>
 
 <input class="button-backtohome" type="file"
- name="image" accept="image/*"><br>
+ name="image"><br>
 
 <input class='button-company' type="submit"
  name="add vaccancie" value="Add vaccancie"><br>
