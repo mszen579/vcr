@@ -1,15 +1,16 @@
 <?php 
 class dbmodel extends CI_Model
 {
-    public function insert_user($par)// here we will enter each parameter into the db
+       public function insert($par, $image)// here we will enter each parameter into the db
     {
-        $query = "INSERT INTO companies (name, email, password, address, type, contact, about, logo, admins_id) values (?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['about'], $par['logo'], 2]; //we need to the md5 is for hashing the password
+        $query = "INSERT INTO companies (name, email, password, address, type, contact, trusted, about, image,  admins_id) values (?,?,?,?,?,?,?,?,?,?)";
+        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
 
         $this->db->query($query, $values);
 
+}
 
-    }
+    
 ///////////////////////////////////////////////login for companies//////////////////////////////////////////////////////
     public function loginMethod($email, $password) // here we will enter each parameter into the db
     {
@@ -108,6 +109,40 @@ public function insertpost($addingpost)
     $values = [$addingpost['title'],$addingpost['image'],$addingpost['description'],$addingpost['language'],$addingpost['startdate'],$addingpost['enddate'],'Pending',$addingpost['link'],$addingpost['vacanciesnum'],$addingpost['filledposition'],$id,1];
     $this->db->query($query,$values);
 }
+
+
+///////////////////////////////////////////////////////////////////////////
+// Husam : query to get  Pending posts and show them on the admin page
+public function getpendingposts()
+{
+    $query= "SELECT * from posts where status=?";
+    $values='pending';
+   $listings= $this->db->query($query,$values)->result_array();
+   return $listings;
+}
+
+
+//////////////////////////////////////////////////////////////////////
+// Husam get all companies and partners for cp 
+public function getcompanies()
+{
+    return $this->db->query("SELECT * FROM companies")->result_array();
+}
+///////////////////////////////////////////////////////////////
+/////Husam get all posts for cp admin 
+public function getallposts()
+{
+    return $this->db->query("SELECT * FROM posts")->result_array();
+}
+//////////////////////////////////////////////////////////////////////
+// Husam: Query to approve  pending posts
+public function aproveapost($id)
+{
+    $query="UPDATE posts SET status='Approved' where id=?";
+    $this->db->query($query, $id);
+}
+///////////////////////////////////////////////////////////////////
+
 }
 
 

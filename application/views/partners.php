@@ -19,12 +19,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <div type="boxform">
 
-  <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
-  <div style="color:white; background-color:#3CB371; width:50%; border-radius:8px;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
+  <div style="color:white; background-color:#FFA500; width:50%; border-radius:4px;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
+  <div style="color:white; background-color:#3CB371; width:50%; border-radius:4px;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
+
+
 
             <h3 style="font-family:arial; color:#E06926">SINGUP AREA</h3>
 
-            <form action="register" method="POST">
+            <form action="register" method="POST" enctype='multipart/form-data'>
                 <input class='input' type="text" name="name" placeholder="name">
                 <br>
                 <input class='input' type="email" name="email" placeholder="email">
@@ -43,11 +45,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <option value="Corporate">Corporate</option>
                     </select>
                 <br>
+                <select class='input' name="trusted">
+                        <option value="trusted">Trusted Educational Partner</option>
+                        <option value="company">Company</option>
+                </select>
+                <br>
                 <input class='input' type="text" name="contact" placeholder="contact">
                 <br>
                 <input class='input' type="text" name="about" placeholder="about the company">
                 <br>
-                <input class="button-backtohome" type="file" name="logo" accept="image/*">
+                <input class="button-backtohome" type="file" name="image">
                 <input class='button' type="submit" name="register" value="Register">
             </form>
         </div>
