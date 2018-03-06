@@ -73,7 +73,7 @@ public function showallvacanccies()//to show all vacanccies in the company profi
        
     
 		$this->form_validation->set_rules('name', 'Name',  'trim|required|min_length[2]');// alpha is to force alphabet
-		$this->form_validation->set_rules('email', 'Email address',  'required|valid_email');// valid_email: only email type is allowed
+		$this->form_validation->set_rules('email', 'Email address',  'trim|required|valid_email');// valid_email: only email type is allowed
         $this->form_validation->set_rules('password', 'password',  'trim|required|min_length[6]');
         $this->form_validation->set_rules('address', 'Address',  'trim|required');
         $this->form_validation->set_rules('passwordConfirm', 'The confirmed Password', 'required|matches[password]'); 
@@ -83,7 +83,7 @@ public function showallvacanccies()//to show all vacanccies in the company profi
         if ($this->form_validation->run() == FALSE) { #if these errors exist, then; 
             $error['error'] = validation_errors(); 
             $this->load->view('partners', $error); //show them in the registration form
-
+         
         } else {
             
                     $companyinfo=$this->input->post(null,false);
@@ -100,7 +100,7 @@ public function showallvacanccies()//to show all vacanccies in the company profi
                     
 
                     $this->load->library('upload',$config);
-
+                                
                     if($this->upload->do_upload('image')){// checker of image upload
                     $data=$this->input->post();//this to post the adata
                     $info=$this->upload->data();
@@ -113,8 +113,8 @@ public function showallvacanccies()//to show all vacanccies in the company profi
 
             $this->load->model('dbmodel'); //load process from models called 'dbmodel.php'
 
-
-            $result = $this->dbmodel->checker($companyinfo['email']);
+}
+             $result = $this->dbmodel->checker($companyinfo['email']); 
 
 
             //this is to show if you have entered the same email to the data base before.
@@ -122,14 +122,14 @@ public function showallvacanccies()//to show all vacanccies in the company profi
                 $error['error'] = "The email you have just entered is already exist, please enter a different email address";
                 $this->load->view('partners', $error);
             } else {
-                $this->dbmodel->insert($companyinfo); //call the (function) from model and run it with our inputs.
+                $this->dbmodel->insert($companyinfo, $image); //call the (function) from model and run it with our inputs.
                 $noerror['noerror'] = "You are succesfully registered to our Records. Now you can login.";
                 $this->load->view('partners', $noerror); #send this errors to loginandregisterpage.
             }
 
 
-
-        }
+                
+        
 
     }
 
@@ -152,6 +152,9 @@ public function login()
         $this->session->set_userdata('name', $result['name']);
         $this->session->set_userdata('email', $result['email']);
         $this->session->set_userdata('image', $result['image']);
+       
+                    
+
         $this->load->model('dbmodel');
         $listings = $this->dbmodel->getpostsofone(); //this is for posting data to the company profile
         $this->load->view('companypage', array('listings'=>$listings) ); 

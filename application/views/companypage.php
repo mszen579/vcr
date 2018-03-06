@@ -22,7 +22,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div> 
             <?php if (NULL !== $this->session->userdata('id')) {?>
                 <h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>   
-                 <div><?=$this->session->userdata('image')?></div>  
+               
+                 <?php echo '<img src=uploads/' .$this->session->userdata('image') .'>'; ?>  <!--adding logo to the company home page-->
                     <?php }?>
             </div>
             <h2>Your recent activites</h2>
