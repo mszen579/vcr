@@ -1,0 +1,294 @@
+
+/*--------------------Starts_Header---------------------*/
+.header{
+    background-color: white;
+    margin: auto;
+    width: 1355px;height: 150px;
+}
+.img{
+    width: 190px;height: 20px;display: inline-block;
+    margin-left: 180px;padding-right: 40px;margin-bottom: 10px;
+    
+  
+}
+
+.logo{
+    width: auto;height: auto;display: inline-block;
+    text-align: center;
+  
+}
+
+
+h4{
+    color: #525252;display: inline-block;padding-right: 40px;
+}
+#squar{
+    height: 50px;width: 1355px; background-color: #434343;
+}
+h6{
+    color: white;
+}
+
+.input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 1px 0;
+    display: inline-block;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+
+    .inputadmin {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 1px 0;
+    display: inline-block;
+    border: 1px solid rgb(252, 209, 194);
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+
+.textarea {
+    width: 40%;
+    height: 150px;
+    padding: auto;
+    margin: 1px 0;
+    display: inline-block;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+.div{
+    
+    margin:auto;
+    text-align: center;
+}
+
+.filter{
+      margin-right: 155px;
+    margin-left: 153px;
+    text-align: center
+}
+
+    table {
+        
+        border-collapse: collapse;
+        width: 70%;
+        margin-left: auto;margin-right: auto;
+    }
+    
+    th,td {
+        border-radius: 8px;
+        text-align: left;
+        height: 50px;
+        padding: 10px;color: white;
+        width: auto;
+    }
+    
+    tr:nth-child(even){background-color: #434343; opacity: 0.9;}
+    
+    th {
+        background-color: #E68650;
+        opacity: 0.9;
+        border-color: #E68650
+        color: #efefef;
+    }
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    margin-top: 50px;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: #B9B9B9;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #F9F9F9;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F9F9F9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #E06A26;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.list{
+    display: inline-block;
+    margin-left: 70px;
+    margin-top: -29px
+}
+/*--------------------Ends_Header---------------------*/
+/*--------------------Statrs_Footer---------------------*/
+.footer{
+    height: 50px;width: 1355px; background-color: #434343;margin-top: 1000px;  padding-left: 240px; margin: auto;
+}
+a{
+    color: white;text-decoration-line: none;display: inline-block;padding: 2px;margin-left: 20px;margin-top: 10px;
+}
+p{
+    margin: auto;
+    color: white;display: inline-block;
+}
+
+span{
+   color: white;
+}
+.footer span:hover {color: #E06A26;text-decoration-line: none;}
+.footer a {color: white;}
+
+.footer a:hover {color: #E06A26;text-decoration-line: none;}
+
+body{
+    background-size: 100% 100%;
+    background-attachment: fixed;
+   
+    
+}
+
+.form{
+    text-align: center;
+}
+
+
+.talnt{
+color: #f1f1f1;
+text-align: center;
+font-size: 30px;
+padding-bottom: 0px;
+font-weight: 700;
+}
+
+
+.imgpost{
+max-width: 120%;
+max-height: 120%;
+width: auto;
+text-align: left;
+margin-left: 50px;
+
+}
+
+
+/*--------------------Ends_Footer---------------------*/
+
+
+/*--------------------button style---------------------*/
+
+
+                .buttonpost {
+                background-color: lightgray;
+                border: none;
+                color: gray;
+                border-radius:4px;
+                padding: 8px 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                box-shadow: 1px 2px orange;
+                }
+
+                .buttonout {
+                background-color: orange;
+                border: none;
+                color: white;
+                border-radius:4px;
+                padding: 8px 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }
+
+                .buttonlogin {
+                background-color: #3CB371;
+                border: none;
+                color: white;
+                border-radius:4px;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }
+
+                .buttonreg {
+                background-color: #3b5998;
+                border: none;
+                color: white;
+                border-radius:4px;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }
+
+
+                 .buttonview {
+                background-color: rgb(255, 255, 255);
+                border: none;
+                color: rgb(48, 46, 46);
+                border-radius:4px;
+                padding: 8px 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }
+                 .buttondel {
+                background-color: #ff3232;
+                border: none;
+                color: white;
+                border-radius:4px;
+                padding: 8px 15px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }

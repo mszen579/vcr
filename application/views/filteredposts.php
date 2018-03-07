@@ -1,23 +1,21 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
-
 	<!DOCTYPE html>
-	<html>
+	<html lang="en">
 
 	<head>
-		<meta charset="utf-8" />
-		<title>Venture Cafe - Talent Portal</title>
+		<meta charset="utf-8">
+		<title>Venture Cafe Rotterdam- Talent Portal</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets\css\main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		
 	</head>
 
 <header>
 		<div class="header">
     <div id=squar></dive>
-    <div class="talnt">Talent Portal- Edit Profile</div>
+    <div class="talnt">Talent Portal - Filter</div>
 	 <img src="<?php echo base_url(); ?>assets\images\vc.png" alt="vc.png">
     <div class="list">
     <ul>
@@ -56,51 +54,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 </header>
 
-
 	<body>
-	
-			 <div style="color:white; background-color:red; width:15%; border-radius:4px; text-align:center; margin:auto; "> <?= isset($errorlogin) ? $errorlogin : '' ?> </div> <!--this to echo the validation errors -->
-
-			<div> 
-			<?php if (NULL !== $this->session->userdata('id')) {?>
-				<h1 style="color:darkorange; text-align:center;">Welcome: <?=$this->session->userdata('name')?></h1>	
-					<?php }?>
-                    <h3 style="color:gray; text-align:center;">Your current profile information:</h3>
-                    <div class="div">
-                    <?php
-	if (isset($listings)){
-		foreach ($listings as $key ) {
-			?>
-			<table style="color:#e06a26; background-color:#434343 ;width:50%; border-radius:4px; text-align:center; margin:auto; ">
+<h3 style="font-family:arial; color:#E06926">View filtered Posts</h3>
+ <?php
+if ($post !== NULL){
+foreach ($post as $key)  { 
+    ?> 
+    <table style="color:#e06a26; background-color:#434343 ;width:50%; border-radius:4px; text-align:center; margin:auto; ">
 			<tr>
-			<td><?= $key['name']?></td>
-			<td><?= $key['email']?></td>
-			<td><?= $key['address']?></td>
-            <td><?= $key['contact']?></td>
-            <td><?= $key['about']?></td>
+			<td>Image: <?= $key['image']?></td>
+			<td>Post title:<?= $key['title']?></td>
+			<td>Post description:<?= $key['description']?></td>
+            <td>Post status:<?= $key['status']?></td>
+            <input type='hidden' value=<?= $key['id']?>>
 			</tr>
 			</table>
-
-			<form action='editnewinfo' method='post'>
-			<h3 style="color:gray; text-align:center;">Edit your profile information:</h3>
-			<input class='input' type="text" name="email" value=<?= $key['email']?>>
-			<input class='input' type="text" name="address" value=<?= $key['address']?>>
-			<input class='input' type="text" name="contact" value=<?= $key['contact']?>>
-			<input class='input' type="text" name="about" value=<?= $key['about']?>>
-			<br>
-            <button class='buttonreg' type="submit">Edit</button>
-			</form>
-        <?php }} ?>
-        </div>
-					<?php if (NULL !== $this->session->userdata('id')) {?>
-					<a href="logout"><button class='buttonout' type="submit">Logout</button></a>	
-          <?php }?>
-          
-	<br><br>
-
+<?php
+}
+}
+?>
+<a href='http://localhost'>back to homepage</a>
 
 	</body>
 
+
+<br>
 	<footer class="footer">
 <p>© Copyright 2018</p>
 <a href="gotologregpage">Companies and Orgnizations</a>
@@ -120,5 +98,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <span class="fa fa-instagram"></span>
   </a>
 </footer>
+
 
 	</html>
