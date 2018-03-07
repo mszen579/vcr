@@ -150,6 +150,7 @@ if (NULL
 <input class='input' type="number" name="filledposition"
  min="1" placeholder="Filled Positions"><br>
 
+<p>Image should not excceed 8MB, and the name shouldnot contain charecters or spaces </p>
 <input class="button-backtohome" type="file"
  name="image"><br>
 

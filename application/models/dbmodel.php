@@ -1,10 +1,10 @@
 <?php 
 class dbmodel extends CI_Model
 {
-    public function insert($par, $image)// here we will enter each parameter into the db
+    public function insert($par, $image, $password)// here we will enter each parameter into the db
     {
         $query = "INSERT INTO companies (name, email, password, address, type, contact, trusted, about, image,  admins_id) values (?,?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
+        $values = [$par['name'], $par['email'], $password, $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
  
         $this->db->query($query, $values);
  
@@ -23,7 +23,7 @@ class dbmodel extends CI_Model
     }
 
 //////////////////////////////////////////////////login for admins///////////////////////////////////////////////////
-    public function loginMethodadmin($email, $password) // here we will enter each parameter into the db
+    public function loginMethodadmin($email, $password) // here we will compare email and password with the db
     {
         $myquery = "SELECT * FROM admins WHERE email=? AND password = ? ";
         $values = array("$email", "$password");

@@ -70,14 +70,14 @@ public function showallvacanccies()//to show all vacanccies in the company profi
 //////////////////////////////////////////////This is for REGISTER & Validation for companies ////////////////////////////////
 public function register()
 {
-  
-
+ 
      $this->form_validation->set_rules('name', 'Name',  'trim|required|min_length[2]');// alpha is to force alphabet
      $this->form_validation->set_rules('email', 'Email address',  'trim|required|valid_email');// valid_email: only email type is allowed
     $this->form_validation->set_rules('password', 'password',  'trim|required|min_length[6]');
     $this->form_validation->set_rules('address', 'Address',  'trim|required');
     $this->form_validation->set_rules('passwordConfirm', 'The confirmed Password', 'required|matches[password]');
-    $this->form_validation->set_rules('about', 'About', 'required');
+    $this->form_validation->set_rules('about', 'About', 'trim|required');
+    // $this->form_validation->set_rules('image', 'Image', 'required');
   
 
     if ($this->form_validation->run() == FALSE) { #if these errors exist, then;
@@ -86,7 +86,11 @@ public function register()
     
     } else {
                 $this->load->model('dbmodel'); 
+
+
+
                 $companyinfo=$this->input->post(null, true);
+
 
                 $image = $_FILES['image']['name'];
                 //  echo $image;
@@ -97,7 +101,7 @@ public function register()
                 $config['upload_path']= 'uploads/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size'] = 512;  // to add more for the capacity see example: $config['max_size'] = 1024 * 12;
-                
+                $config['encrypt_name'] = true;
 
                 $this->load->library('upload',$config);
                             
@@ -117,7 +121,7 @@ public function register()
           $error['error'] = "The email you have just entered is already exist, please enter a different email address";
           $this->load->view('partners', $error);
       } else {
-          $this->dbmodel->insert($companyinfo,$image); //call the (function) from model and run it with our inputs.
+          $this->dbmodel->insert($companyinfo,$image,$password); //call the (function) from model and run it with our inputs.
           $noerror['noerror'] = "You are succesfully registered to our Records. Now you can login.";
           $this->load->view('partners', $noerror); #send this errors to loginandregisterpage.
       }
@@ -201,7 +205,7 @@ public function logoutadmin()
     public function registeradmin()
     {
 
-        //the below 5 lines are for validation of the registrations "it is one of MVC libraries loaded into the autoload.php"
+       
 		$this->form_validation->set_rules('name', 'Name',  'trim|required|min_length[3]|alpha');// alpha is to force alphabet
 		$this->form_validation->set_rules('email', 'Email address',  'required|valid_email');// valid_email: only email type is allowed
 		$this->form_validation->set_rules('password', 'password',  'trim|required|min_length[6]');
@@ -273,9 +277,10 @@ public function insertingpost()
        $this->form_validation->set_rules('enddate', 'End date',  'trim|required');
        $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
-       $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required');
-       $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required');//we need to add condition to be less than vacanciesnum
+       $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required|integer');
+       $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required|integer');//we need to add condition to be less than vacanciesnum
        $this->form_validation->set_rules('language', 'Language',  'trim|required');
+    //    $this->form_validation->set_rules('image', 'Image', 'required');
         
      
 
@@ -308,18 +313,18 @@ public function insertingpost()
            echo "Image is did not uploaded";
            }
 
-           $result = $this->dbmodel->postchecker($addingpost['title']);// this one has been changed to postchecker and a function in the model is added 
+        //    $result = $this->dbmodel->postchecker($addingpost['title']);// this one has been changed to postchecker and a function in the model is added 
 
 
-           //this is to show if you have entered the same email to the data base before.
-           if ($result) {
-               $error['error'] = "The add title you have just entered is already exist, please enter a different add";
-               $this->load->view('addpost', $error);
-           } else {
-               $this->dbmodel->insertpost($addingpost,$image); //call the (function) from model and run it with our inputs.
-               $noerror['noerror'] = "You are succesfully add your vaccancie. Now you can go to your home page to see your listing status";
-               $this->load->view('addpost', $noerror); #send this errors to loginandregisterpage.
-           }
+        //    //this is to show if you have entered the same email to the data base before.
+        //    if ($result) {
+        //        $error['error'] = "The add title you have just entered is already exist, please enter a different add";
+        //        $this->load->view('addpost', $error);
+        //    } else {
+        //        $this->dbmodel->insertpost($addingpost,$image); //call the (function) from model and run it with our inputs.
+        //        $noerror['noerror'] = "You are succesfully add your vaccancie. Now you can go to your home page to see your listing status";
+        //        $this->load->view('addpost', $noerror); #send this errors to loginandregisterpage.
+        //    }
 
 
 
