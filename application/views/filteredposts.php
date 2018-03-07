@@ -6,6 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<head>
 		<meta charset="utf-8">
+<<<<<<< HEAD
 		<title>Venture Cafe Rotterdam- Talent Portal</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets\css\main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,6 +60,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <br>
 <br>
 <br>
+=======
+		<title>Show filtered posts</title>
+	</head>
+
+	<body>
+<h3 style="font-family:arial; color:#E06926">View filtered Posts</h3>
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
  <?php
 if ($post !== NULL){
 foreach ($post as $key)  { 
@@ -76,6 +84,7 @@ foreach ($post as $key)  {
 }
 }
 ?>
+<<<<<<< HEAD
 <a class='buttonout' href='http://localhost'>Back to homepage</a>
 
 	</body>
@@ -103,4 +112,10 @@ foreach ($post as $key)  {
 </footer>
 
 
+=======
+<a href='http://localhost'>back to homepage</a>
+
+	</body>
+
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 	</html>

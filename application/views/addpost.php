@@ -186,10 +186,15 @@ if (NULL
 <input class='input' type="number" name="filledposition"
  min="1" placeholder="Filled Positions"><br>
 
+<<<<<<< HEAD
 <br>
 <div style="color:darkorange;  font-weight: bold;">Image should not excceed 8MB, and the name should not contain charecters or spaces </div>
 <br>
 <input class="buttonreg" type="file"
+=======
+<p>Image should not excceed 8MB, and the name shouldnot contain charecters or spaces </p>
+<input class="button-backtohome" type="file"
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
  name="image"><br>
 
 <input class='buttonreg' type="submit"

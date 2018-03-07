@@ -121,7 +121,7 @@ public function register()
           $error['error'] = "The email you have just entered is already exist, please enter a different email address";
           $this->load->view('partners', $error);
       } else {
-          $this->dbmodel->insert($companyinfo,$image); //call the (function) from model and run it with our inputs.
+          $this->dbmodel->insert($companyinfo,$image,$password); //call the (function) from model and run it with our inputs.
           $noerror['noerror'] = "You are succesfully registered to our Records. Now you can login.";
           $this->load->view('partners', $noerror); #send this errors to loginandregisterpage.
       }
@@ -274,7 +274,11 @@ public function insertingpost()
     $this->form_validation->set_rules('description', 'The description',  'trim|required');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
        $this->form_validation->set_rules('startdate', 'Start date',  'trim|required');
+<<<<<<< HEAD
        $this->form_validation->set_rules('enddate', 'End date',  'trim|required|callback_compareDates');
+=======
+       $this->form_validation->set_rules('enddate', 'End date','trim|required|callback_compareDates');
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
        $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
        $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required|integer');
@@ -315,6 +319,10 @@ public function insertingpost()
 
         //    $result = $this->dbmodel->postchecker($addingpost['title']);// this one has been changed to postchecker and a function in the model is added 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
         //    //this is to show if you have entered the same email to the data base before.
         //    if ($result) {
         //        $error['error'] = "The add title you have just entered is already exist, please enter a different add";
@@ -353,8 +361,24 @@ public function approvepost($id)
 {
     $this->load->model('dbmodel');
     $this->dbmodel->aproveapost($id);
-     $msg = "The post is approved";
-     $this->load->view('homeadmin',array('message' => $msg));
+    //here to test the email confirmation
+    //
+    
+// Please specify your Mail Server - Example: mail.yourdomain.com.
+ini_set("SMTP","ssl://smtp.googlemail.com");
+
+// Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
+ini_set("smtp_port","25");
+
+// Please specify the return address to use
+ini_set('sendmail_from', 'qi.husam@gmail.com');
+    $this->email->from('qi.husam@gmail.com','VCR');
+    $this->email->to('qi.husam@gmail.com');
+    $this->email->subject('Post approve');
+    $this->email->message('You post is approved and now on our main page. Thank you');
+    $this->email->send();
+    $msg = "The post is approved email sent to client";
+    $this->load->view('homeadmin',array('message' => $msg));
   
 }
 ////////////////////////////////////////////////////////////////////
@@ -405,6 +429,7 @@ public function editing($id)
     $this->load->view('cpeditpostspage',['post' => $result]);
    } 
 
+<<<<<<< HEAD
 public function filter($tag)// tag filteration
   {
    $this->load->model('dbmodel');
@@ -414,28 +439,54 @@ public function filter($tag)// tag filteration
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 function compareDates()// compare date
+=======
+   public function filter($tag)
+   {
+    $this->load->model('dbmodel');
+    $result=$this->dbmodel->filtering($tag);
+    $this->load->view('filteredposts',['post' => $result]);
+   }
+
+  
+   function compareDates()
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 {
 $start = strtotime($this->input->post('startdate'));
 $end = strtotime($this->input->post('enddate'));
 if($start > $end)
 {
+<<<<<<< HEAD
    $this->form_validation->set_message('compareDates','Your start date must be earlier than your end date');
    return false;
 }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function comparepositions() // compare vacanccies
+=======
+    $this->form_validation->set_message('compareDates','Your start date must be earlier than your end date');
+    return false;
+}
+}
+
+function comparepositions()
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 {
 $vacancies = $this->input->post('vacanciesnum');
 $filled = $this->input->post('filledposition');
 if($vacancies < $filled)
 {
+<<<<<<< HEAD
    $this->form_validation->set_message('comparepositions','Number of vacancies should be less than filled');
    return false;
+=======
+    $this->form_validation->set_message('comparepositions','Number of vacancies should be less than filled');
+    return false;
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 }
 }
 
 
+<<<<<<< HEAD
 ///////////////////////delete any post from the admin side//////////////////////////////////////////////
 public function deletepost($id)
 {
@@ -453,4 +504,14 @@ public function viewone($id)
     $this->load->view('viewmore',array('listings'=>$listings));
 }
 
+=======
+public function deletepost($id)
+{
+    $this->load->model('dbmodel');
+    $this->dbmodel->delpost($id);
+    $msg="The post was removed ";
+    $this->load->view('cpviewallposts',array('message' => $msg));
+
+}
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 }

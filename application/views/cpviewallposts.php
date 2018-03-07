@@ -64,6 +64,7 @@ foreach ($listings as $key)  {
     ?> 
     <table>
 			<tr>
+<<<<<<< HEAD
 			<th style='text-align:center;'>image</th>
 			<th style='text-align:center;'>Post title</th>
 			<th style='text-align:center;'>Post description</th>
@@ -81,6 +82,14 @@ foreach ($listings as $key)  {
             <input type='hidden' value=<?= $key['id']?>>
             
 			
+=======
+			<td>image:[Assuming an image is posted]<?= $key['image']?></td>
+			<td>Post title:<?= $key['title']?></td>
+			<td>Post description:<?= $key['description']?></td>
+            <td>Post status:<?= $key['status']?></td>
+            <td><a href="deletepost/<?= $key['id']?>"><button class='button-out'>delete</button></a></td>
+			</tr>
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 			</table>
 <?php
 

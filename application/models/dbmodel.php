@@ -1,10 +1,10 @@
 <?php 
 class dbmodel extends CI_Model
 {
-    public function insert($par, $image)// here we will enter each parameter into the db
+    public function insert($par, $image, $password)// here we will enter each parameter into the db
     {
         $query = "INSERT INTO companies (name, email, password, address, type, contact, trusted, about, image,  admins_id) values (?,?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
+        $values = [$par['name'], $par['email'], $password, $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
  
         $this->db->query($query, $values);
  
@@ -63,9 +63,15 @@ public function insert_admin($par)// here we will enter each parameter into the 
 
 public function getposts()
 {
+<<<<<<< HEAD
    $query = "SELECT * FROM `posts` where status='Approved' ORDER BY highlighted DESC";
    $listings= $this->db->query($query)->result_array();
    return $listings;
+=======
+    $query = "SELECT * FROM `posts` where status='Approved' ORDER BY highlighted DESC";
+    $listings= $this->db->query($query)->result_array();
+    return $listings;
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,6 +194,7 @@ public function getOnepost($id)
         }
     }
 
+<<<<<<< HEAD
 ////////////////////////////////////////filteration //////////////////////////////////////////////////////
 public function filtering($tag)
 {
@@ -202,6 +209,17 @@ public function viewmorepost($id)
     $query="SELECT * FROM posts JOIN companies on posts.companies_id=companies.id WHERE posts.id=?";
     $values = array("$id");
     return $this->db->query($query, $values)->result_array();
+=======
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+public function filtering($tag)
+{
+    $query="SELECT * FROM posts WHERE status='Approved' AND tag=? ";
+    $value = array($tag);
+    $listings = $this->db->query($query, $value)->result_array();
+    return $listings;
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 }
 
 }

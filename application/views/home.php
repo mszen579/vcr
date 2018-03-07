@@ -80,8 +80,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
          
         <?php }?>
 			</div>
+<<<<<<< HEAD
 			 
 	<?php
+=======
+	<?php 
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 	if (isset($listings)){
 		foreach ($listings as $key ) {
 			?>
@@ -110,6 +114,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<br><br>
 	
 
+<<<<<<< HEAD
 
   </body>
   
@@ -132,5 +137,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <span class="fa fa-instagram"></span>
   </a>
 </footer>
+=======
+<ul>
+<li><bold>Tags</bold><li>
+<li><a href="filter/growth">Growth</a></li>
+<li><a href="filter/international">International</a></li>
+<li><a href="filter/talent">Talent</a></li>
+<li><a href="filter/city">City</a></li>
+<li><a href="filter/culture">Culture</a></li>
+<li><a href="filter/digital">Digital</a></li>
+<li><a href="filter/community">Community</a></li>
+</ul>
+	</body>
+>>>>>>> d288771f3e276ebfa13a30a59b059e3ae78070dd
 
 	</html>
