@@ -274,11 +274,11 @@ public function insertingpost()
         $this->form_validation->set_rules('description', 'The description',  'trim|required');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
        $this->form_validation->set_rules('startdate', 'Start date',  'trim|required');
-       $this->form_validation->set_rules('enddate', 'End date',  'trim|required');
+       $this->form_validation->set_rules('enddate', 'End date','trim|required|callback_compareDates');
        $this->form_validation->set_rules('link', 'Link',  'trim|required|valid_url');
        $this->form_validation->set_rules('tag', 'Tag',  'trim|required');
        $this->form_validation->set_rules('vacanciesnum', 'Vacancies number',  'trim|required|integer');
-       $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required|integer');//we need to add condition to be less than vacanciesnum
+       $this->form_validation->set_rules('filledposition', 'Filled positions',  'trim|required|integer|callback_comparepositions');//we need to add condition to be less than vacanciesnum
        $this->form_validation->set_rules('language', 'Language',  'trim|required');
     //    $this->form_validation->set_rules('image', 'Image', 'required');
         
@@ -354,8 +354,24 @@ public function approvepost($id)
 {
     $this->load->model('dbmodel');
     $this->dbmodel->aproveapost($id);
-     $msg = "The post is approved";
-     $this->load->view('homeadmin',array('message' => $msg));
+    //here to test the email confirmation
+    //
+    
+// Please specify your Mail Server - Example: mail.yourdomain.com.
+ini_set("SMTP","ssl://smtp.googlemail.com");
+
+// Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
+ini_set("smtp_port","25");
+
+// Please specify the return address to use
+ini_set('sendmail_from', 'qi.husam@gmail.com');
+    $this->email->from('qi.husam@gmail.com','VCR');
+    $this->email->to('qi.husam@gmail.com');
+    $this->email->subject('Post approve');
+    $this->email->message('You post is approved and now on our main page. Thank you');
+    $this->email->send();
+    $msg = "The post is approved email sent to client";
+    $this->load->view('homeadmin',array('message' => $msg));
   
 }
 ////////////////////////////////////////////////////////////////////
@@ -405,4 +421,44 @@ public function editing($id)
     $result = $this->dbmodel->getOnepost($id);
     $this->load->view('cpeditpostspage',['post' => $result]);
    } 
+
+   public function filter($tag)
+   {
+    $this->load->model('dbmodel');
+    $result=$this->dbmodel->filtering($tag);
+    $this->load->view('filteredposts',['post' => $result]);
+   }
+
+  
+   function compareDates()
+{
+$start = strtotime($this->input->post('startdate'));
+$end = strtotime($this->input->post('enddate'));
+if($start > $end)
+{
+    $this->form_validation->set_message('compareDates','Your start date must be earlier than your end date');
+    return false;
+}
+}
+
+function comparepositions()
+{
+$vacancies = $this->input->post('vacanciesnum');
+$filled = $this->input->post('filledposition');
+if($vacancies < $filled)
+{
+    $this->form_validation->set_message('comparepositions','Number of vacancies should be less than filled');
+    return false;
+}
+}
+
+
+public function deletepost($id)
+{
+    $this->load->model('dbmodel');
+    $this->dbmodel->delpost($id);
+    $msg="The post was removed ";
+    $this->load->view('cpviewallposts',array('message' => $msg));
+
+}
 }

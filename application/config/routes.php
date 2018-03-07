@@ -27,6 +27,10 @@ $route['registeradmin'] = 'Engin/registeradmin';
 $route['cpshowcompanies']='Engin/cpshowcompanies';
 $route['gotocpeditpostspage']='Engin/gotocpeditpostspage'; //here now 
 $route['deletecompany/(:any)']='Engin/deletecompany/$1';
+////////////////////////////////////////////////////////
+//this is added today 07 03 2018 - Husam - Filter 
+$route['filter/(:any)']='Engin/filter/$1';
+$route['deletepost/(:any)']='Engin/deletepost/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 

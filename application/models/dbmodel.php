@@ -63,7 +63,7 @@ public function insert_admin($par)// here we will enter each parameter into the 
 //Husam : query for the homepage to show the recent posts starting by the highlited on the top/////
 public function getposts()
 {
-    $query = "SELECT * FROM `posts` ORDER BY highlighted DESC";
+    $query = "SELECT * FROM `posts` where status='Approved' ORDER BY highlighted DESC";
     $listings= $this->db->query($query)->result_array();
     return $listings;
 }
@@ -190,6 +190,16 @@ public function getOnepost($id)
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+public function filtering($tag)
+{
+    $query="SELECT * FROM posts WHERE status='Approved' AND tag=? ";
+    $value = array($tag);
+    $listings = $this->db->query($query, $value)->result_array();
+    return $listings;
+}
+
 }
 
 

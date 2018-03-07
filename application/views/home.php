@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>	
 					<?php }?>
 			</div>
-	<?php
+	<?php 
 	if (isset($listings)){
 		foreach ($listings as $key ) {
 			?>
@@ -44,7 +44,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<br><br>
 	<a href="gotologregpage"><button class='button-login'>Companies and Orgnizations</button></a>
 
-
+<ul>
+<li><bold>Tags</bold><li>
+<li><a href="filter/growth">Growth</a></li>
+<li><a href="filter/international">International</a></li>
+<li><a href="filter/talent">Talent</a></li>
+<li><a href="filter/city">City</a></li>
+<li><a href="filter/culture">Culture</a></li>
+<li><a href="filter/digital">Digital</a></li>
+<li><a href="filter/community">Community</a></li>
+</ul>
 	</body>
 
 	</html>

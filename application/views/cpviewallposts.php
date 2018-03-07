@@ -23,8 +23,7 @@ foreach ($listings as $key)  {
 			<td>Post title:<?= $key['title']?></td>
 			<td>Post description:<?= $key['description']?></td>
             <td>Post status:<?= $key['status']?></td>
-            <input type='hidden' value=<?= $key['id']?>>
-            <td><button class='button-out' type="submit">delete</button></td>
+            <td><a href="deletepost/<?= $key['id']?>"><button class='button-out'>delete</button></a></td>
 			</tr>
 			</table>
 <?php
