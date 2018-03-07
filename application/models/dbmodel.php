@@ -1,10 +1,10 @@
 <?php 
 class dbmodel extends CI_Model
 {
-    public function insert($par, $image, $password)// here we will enter each parameter into the db
+    public function insert($par, $image)// here we will enter each parameter into the db
     {
         $query = "INSERT INTO companies (name, email, password, address, type, contact, trusted, about, image,  admins_id) values (?,?,?,?,?,?,?,?,?,?)";
-        $values = [$par['name'], $par['email'], $password, $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
+        $values = [$par['name'], $par['email'], $par['password'], $par['address'], $par['type'], $par['contact'], $par['trusted'], $par['about'], $image, 2]; //we need to the md5 is for hashing the password
  
         $this->db->query($query, $values);
  
@@ -195,6 +195,13 @@ public function filtering($tag)
    $value = array($tag);
    $listings = $this->db->query($query, $value)->result_array();
    return $listings;
+}
+
+public function viewmorepost($id)
+{
+    $query="SELECT * FROM posts JOIN companies on posts.companies_id=companies.id WHERE posts.id=?";
+    $values = array("$id");
+    return $this->db->query($query, $values)->result_array();
 }
 
 }

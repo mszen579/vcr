@@ -55,7 +55,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </header>
 
 	<body>
-<h3 style="font-family:arial; color:#E06926">View filtered Posts</h3>
+<h3 style="font-family:arial; color:#E06926; text-align:center; font-weight:600">View filtered Posts</h3>
+<br>
+<br>
+<br>
  <?php
 if ($post !== NULL){
 foreach ($post as $key)  { 
@@ -73,7 +76,7 @@ foreach ($post as $key)  {
 }
 }
 ?>
-<a href='http://localhost'>back to homepage</a>
+<a class='buttonout' href='http://localhost'>Back to homepage</a>
 
 	</body>
 

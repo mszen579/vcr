@@ -29,6 +29,7 @@ $route['gotocpeditpostspage']='Engin/gotocpeditpostspage'; //here now
 $route['deletecompany/(:any)']='Engin/deletecompany/$1';
 $route['deletepost/(:any)']='Engin/deletepost/$1';
 $route['filter/(:any)']='Engin/filter/$1';
+$route['viewone/(:any)']='Engin/viewone/$1';
 
 
 

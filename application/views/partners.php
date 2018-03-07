@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px; text-align:center;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
   <div style="color:white; background-color:#3CB371; width:50%; border-radius:8px; text-align:center;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
 
-            <h3 style="font-family:arial; color:#E06926; text-align: center">SINGUP AREA</h3>
+            <h3 style="font-family:arial; color:#E06926; text-align: center">Register Here</h3>
 
             <form class='form' action="register" method="POST" enctype='multipart/form-data'>
                 <input class='input' type="text" name="name" placeholder="Company Name">
@@ -113,7 +113,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  <p>-----------------------------------------------------------------------------------------------------------------------------</p>  
          <!--///////////////////////////////////////////////////////////////////////////////////////// -->
       
-         <h3 style="font-family:arial; color:#E06926; text-align: center">LOGIN AREA</h3>
+         <h3 style="font-family:arial; color:#E06926; text-align: center">Login</h3>
 
 
  <div style="color:white; background-color:#FFA500; width:25%; border-radius:8px; text-align:center;"> <?= isset($logerror) ? $logerror : '' ?> </div> <!--this to echo the validation errors -->
@@ -126,12 +126,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
    <br>
    <input class='buttonlogin' type="submit" name="login" value="login">
 </form>
+
+
+
 <br>
 <br>
+<a href='/'><button class="buttonout">back to home page</button></a>
 </div>
 
 
-<a href='/'><button class="buttonout">back to home page</button></a>
+
 
 
 </body>

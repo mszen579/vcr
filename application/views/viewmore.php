@@ -1,22 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Venture Cafe Rotterdam - Talent Portal - View All Posts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets\css\main.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Venture Cafe Rotterdam - Talent Portal</title>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets\css\main.css"> <!--this is for adding css file to the porject-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!--this is for adding css file to the porject-->
 </head>
+
+
 
 <header>
 		<div class="header">
     <div id=squar></dive>
-    <div class="talnt">Talent Portal - Home page for the admin</div>
+    <div class="talnt">Talent Portal</div>
 	 <img src="<?php echo base_url(); ?>assets\images\vc.png" alt="vc.png">
     <div class="list">
     <ul>
@@ -56,45 +57,55 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </header>
 
 
+
+
 <body>
- <h3 style="font-family:arial; color:#E06926">VCR CP/View All Posts</h3>
- <?php
-if (isset($listings)){
-foreach ($listings as $key)  { 
-    ?> 
-    <table>
-			<tr>
-			<th style='text-align:center;'>image</th>
-			<th style='text-align:center;'>Post title</th>
-			<th style='text-align:center;'>Post description</th>
-      <th style='text-align:center;'>Post status</th>
-      <th style='text-align:center;'>Action</th>
-            </tr>
-            <tr>
-            <td><?='<img alt="Postphoto" class="imgpost" src=uploads/' . $key['image'] .'>';?></td>
-            <td> <?= $key['title']?></td>
-            <td> <?= $key['description']?></td>
-            <td> <?= $key['status']?></td>
-            <td style='text-align:center;'><a href="deletepost/<?= $key['id']?>"><button class='buttondel'>Delete this record</button></a></td>
-            
-            </tr>
-            <input type='hidden' value=<?= $key['id']?>>
-            
-			
-			</table>
-<?php
+    <div class="main-containter">
+      <br>
+      
+        <div class="top-container">
 
-}
+ 
+   <!--///////////////////////////////////////////////////////////////////////////////////////// -->
 
-}
-?>
+        <div type="boxform">
+
+    <div style="color:white; background-color:#FFA500; width:50%; border-radius:8px; text-align:center;"> <?= isset($error) ? $error : '' ?> </div> <!--this to echo the validation errors -->
+  <div style="color:white; background-color:#3CB371; width:50%; border-radius:8px; text-align:center;"> <?= isset($noerror) ? $noerror : '' ?> </div> <!--this to echo the successful entry -->
+
+            <h3 style="font-family:arial; color:#E06926; text-align: center">More info on the post </h3>
+
+           	<?php
+	if (isset($listings)){
+		foreach ($listings as $key ) {
+			?>
+            <div class="viewpost">
+            <h2><?= $key['title']?></h2>
+            <h2><?= $key['description']?></h2>
+            <hr>
+            <h2>About the company</h2>
+            <h3><?= $key['name']?> - <?= $key['type']?></h3>
+            <h3><?= $key['about']?></h3>
+            <hr>
+            <h4>Contact them : </h4>
+            <h4><?= $key['contact']?> - Email: <?= $key['email']?> </h4>
+            <h4><?= $key['address']?></h4>
+            </div>
+            <?php			
+		}
+	}	?>
+ <p>-----------------------------------------------------------------------------------------------------------------------------</p>  
+         <!--///////////////////////////////////////////////////////////////////////////////////////// -->
 
 
-<a class='buttonout' href='http://localhost'>Back to profile</a>
+<a href='/'><button class="buttonout">back to home page</button></a>
+
+
 </body>
 
-<br>
-	<footer class="footer">
+
+
+<footer class="footer">
 <p>© Copyright 2018</p>
 <a href="gotologregpage">Companies and Orgnizations</a>
 <a href="https://venturecaferotterdam.org/credo/">Credo</a>
@@ -113,4 +124,5 @@ foreach ($listings as $key)  {
     <span class="fa fa-instagram"></span>
   </a>
 </footer>
+
 </html>

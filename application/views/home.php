@@ -60,7 +60,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		
 <div class='filter'>
 <ul>
-<li><a style="color:orange; font-weight:800;" href="">Apply Filter: </a></li>
+<li><a style="color:orange; font-weight:800;" href="">Find results based on: </a></li>
 <li><a href="filter/growth">Growth</a></li>
 <li><a href="filter/international">International</a></li>
 <li><a href="filter/talent">Talent</a></li>
@@ -73,11 +73,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 	 <div style="color:white; background-color:red; width:15%; border-radius:4px; text-align:center; margin:auto; "> <?= isset($errorlogin) ? $errorlogin : '' ?> </div> <!--this to echo the validation errors -->
-
+<br>
 			<div> 
 			<?php if (NULL !== $this->session->userdata('id')) {?>
-				<h1 style="color:darkorange;">Welcome: <?=$this->session->userdata('name')?></h1>	
-					<?php }?>
+				<h1 style="color:darkorange; font-weight:700; border: solid 2px; border-radius:4px; width:50%; text-align:center; margin:auto;">Welcome: <?=$this->session->userdata('name')?> <a href="http://localhost/login"><button class='buttonview' type="submit">View your profile</button></a>  </h1>	
+         
+        <?php }?>
 			</div>
 			 
 	<?php
@@ -96,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <br>
             <td><?= $key['title']?></td>
             <td><a href='http://<?= $key['link']?>'><?= $key['link']?></a></td>
-            <td><button class='buttonview'>View this</button></td>
+            <td><a href='viewone/<?= $key['id']?>'><button class='buttonview'>more info</button></a></td>
             </tr>
 			</table>
 		
@@ -110,8 +111,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	
 
 
-	</body>
-	<footer class="footer">
+  </body>
+  
+<footer class="footer">
 <p>© Copyright 2018</p>
 <a href="gotologregpage">Companies and Orgnizations</a>
 <a href="https://venturecaferotterdam.org/credo/">Credo</a>
